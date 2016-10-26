@@ -1,8 +1,9 @@
-require './bank.rb'
-require './person.rb'
+require_relative '../lib/bank.rb'
+require_relative '../lib/wizards.rb'
 require 'pry'
 
 class Credit
+  attr_reader :credit, :person, :credit_limit
 
   def initialize(credit_card_name)
     @credit_card_name = credit_card_name
@@ -20,7 +21,7 @@ class Credit
       credit_limit -= borrowed_amount
       @credit_balance += borrowed_amount
     end
-    @credit_balance
+    @credit_balance.to_i
   end
 
   def pay_down_balance(person, pay_off)
@@ -29,7 +30,7 @@ class Credit
     else
       @credit_balance -= pay_off
     end
-    @credit_balance
+    @credit_balance.to_i
   end
 
 end

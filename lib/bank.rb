@@ -1,5 +1,5 @@
 require 'pry'
-require './wizards.rb'
+require_relative '../lib/wizards.rb'
 
 class Bank
 attr_reader     :bank_name,
@@ -15,12 +15,12 @@ attr_reader     :bank_name,
     @balance = 0
   end
 
-  def open_account(person)
+  def open_account(name)
       person.bank_accounts << bank_name
       puts "An account has been opened for #{person.name} with #{@bank_name}."
   end
 
-  def deposit(person, deposit_amount)
+  def deposit(name, deposit_amount)
       if person.level_of_cash < deposit_amount
           puts "#{person.name} doesn't have enough cash to perform this deposit"
       else
@@ -31,7 +31,7 @@ attr_reader     :bank_name,
       @balance
   end
 
-  def withdrawal(person, withdrawal_amount)
+  def withdrawal(name, withdrawal_amount)
     if @balance < withdrawal_amount
       puts "Insuffient funds."
     else
@@ -42,7 +42,7 @@ attr_reader     :bank_name,
     @balance
   end
 
-  def transfer(person, transfer_bank, transfer_amount)
+  def transfer(name, transfer_bank, transfer_amount)
       if transfer_amount > @balance
           puts "Insufficient funds."
       elsif person.bank_accounts.include?(transfer_bank_name) && transfer_amount <= @balance
@@ -57,7 +57,7 @@ end
 
 person = Person.new("Mary", 1000)
 bank = Bank.new("JP Morgan")
-binding.pry
+# binding.pry
 bank.open_account(person)
 bank.deposit(person, 500)
 bank.withdrawal(person, 100)

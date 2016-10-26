@@ -6,7 +6,7 @@ require 'minitest/pride'
 class CreditTest < Minitest::Test
 
   def test_credit_exists
-    assert_instance_of Credit, credit.new("AMEX")
+    assert_instance_of Credit, Credit.new("AMEX")
   end
 
   def test_credit_can_open
